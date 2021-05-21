@@ -64,8 +64,8 @@ class Game
   def print_board
     col_sep = ' | '
     row_sep = '--+---+--'
-    label_pos = ->(pos) { @board[pos] || pos }
-    row_for_display = ->(row) { row.map(&label_pos).join(col_sep) }
+    label_pos = Proc.new { |pos| @board[pos] || pos }
+    row_for_display = Proc.new { |row| row.map(&label_pos).join(col_sep) }
     row_pos = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     rows_for_display = row_pos.map(&row_for_display)
     puts rows_for_display.join("\n#{row_sep}\n")
